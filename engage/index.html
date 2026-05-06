@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#001c7d">
+<link rel="icon" href="logo.png" type="image/x-icon">
+<title>Teacher Chris UPN Social Media</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+</style>
+
+<style>
+  body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background-color: #001c7d;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background-color: white;
+    display: flex;
+    align-items: center;
+	justify-content: center; /* 🔥 centra horizontalmente */
+    padding: 10px 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  header img {
+    height: 40px;
+    margin-right: 10px;
+  }
+
+  header h4 {
+    
+    color: #001c7d;
+    margin: 0;
+  }
+
+  /* IFRAME ocupa todo el espacio disponible */
+  iframe {
+    flex: 1; /* 🔥 clave */
+    width: 100%;
+    border: none;
+    min-height: 500px;
+  }
+
+  /* FOOTER */
+  footer {
+    background-color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 10px;
+    color: #555;
+  }
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <img src="logo.png" alt="Logo">
+
+  <div style="display: flex; flex-direction: column; margin-left: 5px;" align="left">
+    
+    <p style="font-weight: 700; color: #001c7d; margin: 0; font-size: 24px;">
+      TeachTalk
+    </p>
+    
+    <p style="font-weight: 500; color: #001c7d; margin: 0; font-size: 9px;">
+      A social media site to share knowledge
+    </p>
+
+  </div>
+</header>
+
+<!-- VIVA ENGAGE (tal cual) -->
+<iframe 
+  name="embed-feed" 
+  title="Viva Engage" 
+  src="https://engage.cloud.microsoft/embed/groups/eyJfdHlwZSI6Ikdyb3VwIiwiaWQiOiIyNTQzMTQ5MjE5ODQifQ">
+</iframe>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-weight: 500;">Created by Teacher Christian Serrano - Educational Use Only</p>
+</footer>
+
+<!-- DISABLE RIGHT CLICK -->
+<script> 
+document.oncontextmenu = function() { 
+    return false; 
+};
+</script>
+
+</body>
+</html>
