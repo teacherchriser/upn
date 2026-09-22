@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entertainment TV</title>
+<meta name="theme-color" content="#696969">
+<link rel="icon" href="https://teacherchriser.github.io/images/me.gif" type="image/x-icon">
+
+<!-- SITE COUNTER -->
+	<script data-goatcounter="https://teacherchriser.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&family=Special+Elite&display=swap');
+@font-face {
+    font-family: 'VCR';
+    src: url('https://teacherchriser.github.io/tools/fonts/VCR.ttf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
+<!-- src: url('./MiFuente.ttf') format('truetype') ttf -format('opentype') otf; 
+Then add , serif; in font-family:
+-->
+
+
+<style>
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+
+    background:
+        radial-gradient(
+            circle at center,
+            #252525 0%,
+            #111 55%,
+            #050505 100%
+        );
+
+    color: white;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+header {
+    width: 100%;
+    text-align: center;
+    padding: 20px 15px 10px;
+}
+
+
+header h1 {
+    margin: 0;
+    color: #00ff22;
+    font-family: "VCR", serif;
+    font-size: clamp(24px, 4vw, 42px);
+    text-shadow:
+        0 0 5px #00ff22,
+        0 0 15px rgba(0,255,34,0.4);
+}
+
+
+header p {
+    margin: 6px 0 0;
+	font-family: "VCR", serif;
+    color: #aaa;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   ÁREA PRINCIPAL
+   ========================================================= */
+
+.tv-room {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+/* =========================================================
+   CONTENEDOR GENERAL
+   ========================================================= */
+
+.tv-system {
+    width: min(1200px, 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+
+/* =========================================================
+   TELEVISOR
+   ========================================================= */
+
+.tv {
+    position: relative;
+    width: min(760px, 75vw);
+    aspect-ratio: 704 / 450;
+}
+
+
+/* =========================================================
+   IMAGEN DEL TELEVISOR
+   ========================================================= */
+
+.tv-body {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 10;
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PANTALLA REAL
+   =========================================================
+
+   La pantalla está calculada a partir de las dimensiones
+   originales de tvstencil.webp.
+
+   Si posteriormente quieres ajustar unos pocos píxeles,
+   solamente modifica estos cuatro valores.
+   ========================================================= */
+
+.tv-screen {
+    position: absolute;
+    left: 15.6%;
+    top: 11.1%;
+    width: 68.2%;
+    height: 77.8%;
+    overflow: hidden;
+    background: #000;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   IFRAME
+   ========================================================= */
+
+.tv-screen iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: white;
+}
+
+
+/* =========================================================
+   EFECTO CRT
+   ========================================================= */
+
+.tv-screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 20;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.08) 0px,
+            rgba(0,0,0,0.08) 1px,
+            transparent 2px,
+            transparent 4px
+        );
+
+}
+
+
+/* =========================================================
+   VIÑETA DE PANTALLA
+   ========================================================= */
+
+.tv-screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 21;
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 55%,
+            rgba(0,0,0,0.25) 100%
+        );
+
+}
+
+
+/* =========================================================
+   EFECTO DE CAMBIO DE CANAL
+   ========================================================= */
+
+.channel-effect {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    display: none;
+    background: #000;
+}
+
+
+/*
+   Cuando está activo aparece el GIF
+*/
+
+.channel-effect.active {
+    display: block;
+}
+
+/* GIF */
+
+.channel-effect img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   INFORMACIÓN SOBRE LA PANTALLA
+   ========================================================= */
+
+.channel-overlay {
+    position: absolute;
+    top: 8px;
+    left: 20px;
+    z-index: 25;
+    font-family: "Courier New",monospace;
+    color: #00ff22;
+    text-shadow:
+        0 0 5px black;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tv-screen:hover .channel-overlay {
+    opacity: 1;
+}
+.channel-overlay .number {
+    font-size: 13px;
+}
+.channel-overlay .country {
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   PANEL DE CANALES
+   ========================================================= */
+
+.channel-panel {
+    width: 225px;
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   LISTA
+   ========================================================= */
+
+.channels {
+    background: #030303;
+    border: 3px solid #999;
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.7),
+        inset 0 0 12px #333; 
+}
+.channel-list {
+    max-height: 430px;
+    overflow-y: auto;
+	display: none; <!-- CHANGE THIS PART IF WANT TO SEE CHANNELS IN CONTROL VIEWER -->
+}
+
+/* =========================================================
+   CANAL
+   ========================================================= */
+
+.channel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 5px;
+    cursor: pointer;
+    color: #00ff22;
+    font-family:
+        Arial,
+        sans-serif;
+    font-size: 15px;
+    border-radius: 4px;
+    transition:
+        background 0.15s,
+        color 0.15s;
+}
+.channel:hover {
+    background: #151515;
+    color: white;
+}
+.channel.active {
+    background: #003900;
+    color: white;
+    box-shadow:
+        inset 0 0 6px #00ff22;
+}
+
+
+/* =========================================================
+   BANDERA
+   ========================================================= */
+.channel img {
+    width: 28px;
+    height: 19px;
+    object-fit: cover;
+    border: 1px solid #555;
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   NÚMERO DEL CANAL
+   ========================================================= */
+
+.channel-number {
+    width: 25px;
+    color: #777;
+    font-family: "Courier New",monospace;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   ACCIONES
+   ========================================================= */
+.channel-actions {
+    padding-top: 9px;
+    margin-top: 8px;
+    border-top: 1px solid #333;
+    font-size: 13px;
+    color: #00ff22;
+	display: none;
+}
+.channel-actions span {
+    cursor: pointer;
+    margin-right: 8px;
+}
+.channel-actions span:hover {
+    color: white;
+}
+
+
+/* =========================================================
+   INFORMACIÓN DEL CANAL
+   ========================================================= */
+.current-channel {
+    text-align: center;
+    margin-top: 8px;
+    color: #00ff22;
+    font-family: "Courier New",monospace;
+}
+.current-channel-number {
+    font-size: 13px;
+}
+.current-country {
+    font-size: 15px;
+    margin-top: 3px;
+}
+.current-flag {
+    display: block;
+    width: 45px;
+    height: 30px;
+    object-fit: cover;
+    margin: 0 auto 5px;
+    border: 1px solid #555;
+}
+
+
+/* =========================================================
+   CONTROL REMOTO
+   ========================================================= */
+.remote {
+    margin-top: 12px;
+    padding: 9px;
+    background:
+        linear-gradient(
+            #999,
+            #666
+        );
+    border: 3px solid #aaa;
+    border-radius: 14px;
+    box-shadow:
+        0 5px 15px #000,
+        inset 0 0 8px #333;
+}
+
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+.remote button {
+    display: block;
+    width: 100%;
+    height: 36px;
+    margin-bottom: 7px;
+    border-radius: 20px;
+    border: 2px solid #333;
+    background:
+        linear-gradient(
+            #eee,
+            #aaa
+        );
+    color: #111;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.remote button:last-child {
+    margin-bottom: 0;
+}
+
+
+.remote button:hover {
+    background: #ddd;
+}
+.remote button:active {
+    transform: translateY(1px);
+}
+
+
+/* POWER */
+.remote .power {
+    color: #00bb20;
+}
+
+
+/* =========================================================
+   INDICADOR DE POWER
+   ========================================================= */
+.power-indicator {
+    position: absolute;
+    bottom: 4%;
+    left: 77%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #FF0000;
+    box-shadow:
+        0 0 8px #FF0000;
+
+    z-index: 15;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    margin-top: 5px;
+    color: #D6D6D6;
+    font-size: 12px;
+	font-family: "VCR", serif;
+}
+
+footer a {
+    color: #00ff22;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   TV APAGADO
+   ========================================================= */
+.tv-off {
+    background: #000 !important;
+}
+
+
+.tv-off iframe {
+    visibility: hidden;
+}
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+.channel-list::-webkit-scrollbar {
+    width: 7px;
+}
+.channel-list::-webkit-scrollbar-track {
+    background: #111;
+}
+.channel-list::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 850px) {
+    .tv-system {
+        flex-direction: column;
+    }
+    .tv {
+        width: min(704px, 95vw);
+    }
+    .channel-panel {
+        width: min(500px, 95vw);
+    }
+    .channel-list {
+        max-height: 230px;
+    }
+}
+
+@media (max-width: 500px) {
+    .tv-room {
+        padding: 8px;
+    }
+    .tv {
+        width: 100%;
+    }
+    .channel-panel {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   ANIMACIÓN DE ENCENDIDO
+   ========================================================= */
+@keyframes screenFlash {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<header>
+    <h1>Entertainment Presentations</h1>
+    <p>UPN CAI2 Students' Presentations — Channel Surfing Edition</p>
+</header>
+
+<!-- =====================================================
+     TV
+     ===================================================== -->
+
+<main class="tv-room">
+
+
+<div class="tv-system">
+
+<!-- =====================================================
+     TELEVISOR
+     ===================================================== -->
+
+<div class="tv">
+    <!-- =================================================
+         PANTALLA
+         ================================================= -->
+
+    <div
+        class="tv-screen"
+        id="tvScreen">
+
+        <!-- =============================================
+             PRESENTACIÓN
+             ============================================= -->
+
+        <iframe
+            id="presentationFrame"
+            src=""
+            allowfullscreen>
+        </iframe>
+
+        <!-- =============================================
+             EFECTO GIF
+             
+             CAMBIA "static.gif" POR TU GIF
+             ============================================= -->
+
+        <div
+            class="channel-effect"
+            id="channelEffect">
+
+            <img
+                id="staticGif"
+                src="tv-static-rainbow.gif"
+                alt="Channel change">
+        </div>
+
+        <!-- =============================================
+             INFORMACIÓN SOBRE PANTALLA
+             ============================================= -->
+
+        <div class="channel-overlay">
+            <div
+                class="number"
+                id="overlayNumber">
+                Click power button
+            </div>
+
+            <div
+                class="country"
+                id="overlayCountry">
+                to turn on TV
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================
+         CARCASA DEL TELEVISOR
+
+         ESTA ES LA IMAGEN REAL DE MYRETROTVS
+         ================================================= -->
+
+    <img
+        class="tv-body"
+        src="tvstencil.webp"
+        alt="Retro TV">
+
+    <!-- =================================================
+         LUZ DE POWER
+         ================================================= -->
+
+    <div
+        class="power-indicator"
+        id="powerIndicator">
+    </div>
+</div>
+
+<!-- =====================================================
+     PANEL DE CANALES
+     ===================================================== -->
+<div class="channel-panel">
+<div class="channels">
+    <div class="channel-list" id="channelList">
+
+
+        <!-- CANAL 01 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHBfshyHV8/wPrYai5I9yEnAIqetC4S5g/view?embed" data-name="Colombia">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/co.svg" alt="Colombia">
+            <span class="channel-number">01</span><span>Colombia</span>
+        </div>
+		
+		<!-- CANAL 02 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTOqPjKcs/DQNiFKyXx5F7bpHiMOIX_A/view?embed" data-name="Mexico">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/mx.svg" alt="Mexico">
+            <span class="channel-number">02</span><span>Mexico</span>
+        </div>
+		
+		<!-- CANAL 03 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTPFUrmew/_vYjoVNCu8OWA1NzgNFWXw/view?embed" data-name="England">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" alt="England">
+            <span class="channel-number">03</span><span>England</span>
+        </div>
+
+        <!-- CANAL 04 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTOjupYPo/U2RISZYwQpRcUudb-s4xvw/view?embed" data-name="Switzerland">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/ch.svg" alt="Switzerland">
+            <span class="channel-number">04</span><span>Switzerland</span>
+        </div>
+		
+		<!-- CANAL 05 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTPbxRuMw/TYo3Wb9NHloxmv8mz0IXlQ/view?embed" data-name="Ireland">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/ie.svg" alt="Ireland">
+            <span class="channel-number">05</span><span>Ireland</span>
+        </div>
+		
+		<!-- CANAL 06 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTOsjikqs/TytUfACazypKP4XHtjTgrg/view?embed" data-name="Estonia">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/ee.svg" alt="Estonia">
+            <span class="channel-number">06</span><span>Estonia</span>
+        </div>
+		
+		<!-- CANAL 07 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTPJux0Uw/n55vOXNFYJteedQz-C4t1A/view?embed" data-name="Germany">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/de.svg" alt="Germany">
+            <span class="channel-number">07</span><span>Germany</span>
+        </div>
+		
+		<!-- CANAL 08 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTPRC-7s8/KZ5LzpBiiVTVrJiBXTbTLA/view?embed" data-name="South Korea">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/kr.svg" alt="South Korea">
+            <span class="channel-number">08</span><span>South Korea</span>
+        </div>
+		
+		<!-- CANAL 09 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTOqhrG-0/wVGa-VeTnoMpbItPszeseQ/view?embed" data-name="Finland">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/fi.svg" alt="Finland">
+            <span class="channel-number">09</span><span>Finland</span>
+        </div>
+		
+		<!-- CANAL 10 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTPKGGHSA/jFNkO3li2bmEni4KBC2RXQ/view?embed" data-name="Netherlands">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/nl.svg" alt="Netherlands">
+            <span class="channel-number">10</span><span>Netherlands</span>
+        </div>
+		
+		<!-- CANAL 11 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTOlo-urY/6kqVazHh5q9BRmbIeZdAng/view?embed" data-name="Canada">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/ca.svg" alt="Canada">
+            <span class="channel-number">11</span><span>Canada</span>
+        </div>
+		
+		<!-- CANAL 12 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTPDrfEsc/m15Nqbxiu12Pz6t49YUzYA/view?embed" data-name="Norway">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/no.svg" alt="Norway">
+            <span class="channel-number">12</span><span>Norway</span>
+        </div>
+		
+		<!-- CANAL 13 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTOpWrkKI/BVOE3E438FpJGb7Ae2EX2w/view?embed" data-name="France">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/fr.svg" alt="France">
+            <span class="channel-number">13</span><span>France</span>
+        </div>
+		
+		<!-- CANAL 14 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHSlkMd60s/mDYIExGKz7kjWyoWwynBlQ/view?embed" data-name="Japan">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/jp.svg" alt="Japan">
+            <span class="channel-number">14</span><span>Japan</span>
+        </div>
+		
+		<!-- CANAL 15 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTPLAessA/UKufjHrkWS1t9ILGUZ2z8g/view?embed" data-name="India">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/in.svg" alt="India">
+            <span class="channel-number">15</span><span>India</span>
+        </div>
+		
+		<!-- CANAL 16 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHUcBUlWlA/Wt5O-97pEe7XKcLHZrE1sw/view?embed" data-name="Singapore">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/sg.svg" alt="Singapore">
+            <span class="channel-number">16</span><span>Singapore</span>
+        </div>
+		
+		<!-- CANAL 17 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTPONFLfk/ByYNAhfl23IeFPv82r7RWg/view?embed" data-name="Brazil">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/br.svg" alt="Brazil">
+            <span class="channel-number">17</span><span>Brazil</span>
+        </div>
+		
+		<!-- CANAL 18 -->
+        <div class="channel active" data-url="https://www.canva.com/design/DAHTOl7xee4/4V_KRd-B74K_LRuhDrK0kg/view?embed" data-name="Sweeden">
+        <!-- BANDERA --><img src="https://flagicons.lipis.dev/flags/4x3/se.svg" alt="Sweeden">
+            <span class="channel-number">18</span><span>Sweeden</span>
+        </div>
+		
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         SELECT ALL / NONE
+         ================================================= -->
+
+    <div class="channel-actions">
+
+        <span onclick="selectAll()">
+            Select All
+        </span>
+
+        |
+
+        <span onclick="selectNone()">
+            None
+        </span>
+
+    </div>
+
+
+
+    <!-- =================================================
+         CANAL ACTUAL
+         ================================================= -->
+
+    <div class="current-channel">
+	
+		<img
+			id="currentFlag"
+			src="https://flagicons.lipis.dev/flags/4x3/co.svg"
+			alt="Colombia"
+			class="current-flag">
+
+        <div
+            class="current-channel-number"
+            id="currentChannelNumber">
+
+            CH 01
+
+        </div>
+
+
+        <div
+            class="current-country"
+            id="currentCountry">
+
+            Colombia
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         CONTROL REMOTO
+         ================================================= -->
+
+    <div class="remote">
+        <button
+            class="power"
+            onclick="togglePower()">
+
+            POWER
+
+        </button>
+
+
+        <button
+            onclick="previousChannel()">
+
+            CH ▲
+
+        </button>
+
+
+        <button
+            onclick="nextChannel()">
+
+            CH ▼
+
+        </button>
+
+<!-- VOLUME BUTTONS ARE DECORATIVE
+
+        <button
+            onclick="volumeUp()">
+
+            VOL +
+
+        </button>
+
+
+        <button
+            onclick="volumeDown()">
+
+            VOL -
+
+        </button>
+-->
+
+
+        <button
+            onclick="showMenu()">
+
+            MENU
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer>
+    <!-- CREDITS -->
+   
+<strong>
+Created by: Professor Christian Serrano © 2026 - An Educational Project
+</strong>
+
+</footer>
+
+
+
+<script>
+
+
+/* =========================================================
+   ELEMENTOS
+   ========================================================= */
+
+const channels =
+    document.querySelectorAll(".channel");
+
+const frame =
+    document.getElementById("presentationFrame");
+
+const effect =
+    document.getElementById("channelEffect");
+
+const currentChannelNumber =
+    document.getElementById("currentChannelNumber");
+
+const currentCountry =
+    document.getElementById("currentCountry");
+	
+const currentFlag =
+    document.getElementById("currentFlag");
+
+const overlayNumber =
+    document.getElementById("overlayNumber");
+
+const overlayCountry =
+    document.getElementById("overlayCountry");
+
+const powerIndicator =
+    document.getElementById("powerIndicator");
+
+const tvScreen =
+    document.getElementById("tvScreen");
+
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
+
+let currentChannel = 0;
+
+let tvOn = false;
+
+
+/*
+   DURACIÓN DEL EFECTO GIF
+
+   CAMBIA ESTE VALOR SI TU GIF DURA MÁS O MENOS.
+
+   1200 = 1.2 segundos
+*/
+
+const EFFECT_TIME = 1200;
+
+
+/* =========================================================
+   CAMBIAR CANAL
+   ========================================================= */
+
+function changeChannel(index) {
+
+
+    if (!tvOn) {
+        return;
+    }
+
+
+    /* LOOP AL LLEGAR AL FINAL */
+
+    if (index < 0) {
+
+        index = channels.length - 1;
+
+    }
+
+
+    if (index >= channels.length) {
+
+        index = 0;
+
+    }
+
+
+    currentChannel = index;
+
+
+    const channel =
+        channels[index];
+
+
+    const url =
+        channel.dataset.url;
+
+
+    const name =
+        channel.dataset.name;
+		
+	const flag =
+		channel.querySelector("img").src;
+
+
+    /* =====================================================
+       MOSTRAR EFECTO DE CAMBIO
+       ===================================================== */
+
+    showChannelEffect();
+
+
+    /* =====================================================
+       CARGAR PRESENTACIÓN
+       ===================================================== */
+
+    setTimeout(() => {
+
+        frame.src = url;
+
+    }, 250);
+
+
+    /* =====================================================
+       MARCAR CANAL ACTIVO
+       ===================================================== */
+
+    channels.forEach(channel => {
+
+        channel.classList.remove("active");
+
+    });
+
+
+    channel.classList.add("active");
+
+
+    /* =====================================================
+       INFORMACIÓN
+       ===================================================== */
+
+    const number =
+        String(index + 1).padStart(2, "0");
+
+
+    currentChannelNumber.innerText =
+        "CH " + number;
+
+
+    currentCountry.innerText =
+        name;
+		currentFlag.src = flag;
+		currentFlag.alt = name;
+
+
+    overlayNumber.innerText =
+        "CH " + number;
+
+
+    overlayCountry.innerText =
+        name;
+
+
+    /* =====================================================
+       SCROLL
+       ===================================================== */
+
+    channel.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "nearest"
+
+    });
+
+}
+
+
+/* =========================================================
+   EFECTO GIF
+   ========================================================= */
+
+function showChannelEffect() {
+
+
+    /*
+       Reinicia el GIF.
+
+       Esto es importante porque permite que el efecto
+       vuelva a comenzar cada vez que cambiamos de canal.
+    */
+	
+	/* SONIDO */
+    playStaticSound();
+	staticSound.volume = 0.6;
+
+    const gif =
+        document.getElementById("staticGif");
+
+
+    gif.src = "";
+
+    gif.src = "tv-static-rainbow.gif";
+
+
+    effect.classList.add("active");
+
+
+    setTimeout(() => {
+
+        effect.classList.remove("active");
+
+    }, EFFECT_TIME);
+
+}
+
+
+/* =========================================================
+   SIGUIENTE CANAL
+   ========================================================= */
+
+function nextChannel() {
+
+    changeChannel(
+        currentChannel + 1
+    );
+
+}
+
+
+/* =========================================================
+   CANAL ANTERIOR
+   ========================================================= */
+
+function previousChannel() {
+
+    changeChannel(
+        currentChannel - 1
+    );
+
+}
+
+
+/* =========================================================
+   POWER
+   ========================================================= */
+
+function togglePower() {
+
+
+    if (tvOn) {
+
+
+        /* ===============================
+           APAGAR
+           =============================== */
+
+        tvOn = false;
+
+
+        frame.src = "";
+
+
+        tvScreen.classList.add("tv-off");
+
+
+        powerIndicator.style.opacity =
+            "0.25";
+			
+		powerIndicator.style.opacity = "1";
+		powerIndicator.style.background = "red";
+		powerIndicator.style.boxShadow = "0 0 8px red";
+
+
+    }
+
+    else {
+
+
+        /* ===============================
+           ENCENDER
+           =============================== */
+
+        tvOn = true;
+
+
+        tvScreen.classList.remove("tv-off");
+
+
+        powerIndicator.style.opacity =
+            "1";
+
+
+        /*
+           EFECTO DE ENCENDIDO
+        */
+
+        showChannelEffect();
+
+
+        setTimeout(() => {
+
+            changeChannel(
+                currentChannel
+            );
+
+        }, 300);
+		powerIndicator.style.opacity = "1";
+		powerIndicator.style.background = "#00ff22";
+		powerIndicator.style.boxShadow = "0 0 8px #00ff22";
+
+    }
+
+}
+
+
+/* =========================================================
+   VOLUMEN
+   =========================================================
+
+   Por ahora son botones decorativos porque el contenido
+   está dentro de un iframe y cada presentación puede
+   controlar su propio audio.
+   ========================================================= */
+
+let volume = 50;
+
+
+function volumeUp() {
+
+    volume = Math.min(
+        volume + 10,
+        100
+    );
+
+    console.log(
+        "Volume: " + volume
+    );
+
+}
+
+
+function volumeDown() {
+
+    volume = Math.max(
+        volume - 10,
+        0
+    );
+
+    console.log(
+        "Volume: " + volume
+    );
+
+}
+
+
+/* =========================================================
+   MENU
+   ========================================================= */
+
+function showMenu() {
+
+    alert(
+        "ENTERTAINMENT PRESENTATIONS TV\n\n" +
+        "Turn on the TV and " +
+        "change channels to see the countries.\n\n" +
+		"POWER = Turn on / Turn off\n" +
+        "CH ▲ / CH ▼ = Change channel/country\n" +
+		"VOLUME buttons are decorative only."
+    );
+
+}
+
+
+/* =========================================================
+   CLICK EN LOS CANALES
+   ========================================================= */
+
+channels.forEach(
+    (channel, index) => {
+
+        channel.addEventListener(
+            "click",
+            () => {
+
+                if (!tvOn) {
+
+                    tvOn = true;
+
+                    tvScreen.classList.remove(
+                        "tv-off"
+                    );
+
+                    powerIndicator.style.opacity =
+                        "1";
+
+                }
+
+                changeChannel(index);
+
+            }
+        );
+
+    }
+);
+
+
+/* =========================================================
+   TECLADO
+   ========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+
+        /* FLECHA ARRIBA */
+
+        if (
+            event.key === "ArrowUp"
+        ) {
+
+            previousChannel();
+
+        }
+
+
+        /* FLECHA ABAJO */
+
+        if (
+            event.key === "ArrowDown"
+        ) {
+
+            nextChannel();
+
+        }
+
+
+        /* ESPACIO = POWER */
+
+        if (
+            event.code === "Space"
+        ) {
+
+            event.preventDefault();
+
+            togglePower();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   SELECT ALL
+   ========================================================= */
+
+function selectAll() {
+
+    channels.forEach(channel => {
+
+        channel.style.display =
+            "flex";
+
+    });
+
+}
+
+
+/* =========================================================
+   NONE
+   ========================================================= */
+
+function selectNone() {
+
+    channels.forEach(channel => {
+
+        channel.style.display =
+            "none";
+
+    });
+
+}
+
+
+/* =========================================================
+   ESTADO INICIAL
+   =========================================================
+
+   La TV comienza apagada.
+
+   El estudiante puede pulsar POWER.
+   ========================================================= */
+
+tvOn = false;
+
+tvScreen.classList.add("tv-off");
+
+powerIndicator.style.opacity =
+    "0.25";
+
+/* =========================================================
+   SONIDO DE ESTÁTICA DEL TV
+   ========================================================= */
+
+const staticSound = new Audio(
+    "tv-static-01.mp3"
+);
+
+staticSound.volume = 0.6;
+
+
+/* Reproducir sonido */
+
+function playStaticSound() {
+
+    staticSound.currentTime = 0;
+
+    staticSound.play().catch(() => {
+        // El navegador puede bloquear el audio
+        // hasta que el usuario interactúe con la página.
+    });
+
+}
+</script>
+
+<script> 
+document.oncontextmenu = function() { 
+    return false; 
+};
+</script>
+
+
+</body>
+
+</html>
