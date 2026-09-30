@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Instagram Classroom Mobile</title>
+
+<style>
+/* =========================================================
+   MOBILE ONLY - INSTAGRAM CLASSROOM TEMPLATE
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-width: 320px;
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #111;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* =========================================================
+   MAIN MOBILE CONTAINER
+   ========================================================= */
+
+.instagram-template {
+    width: 100%;
+    max-width: 480px;
+    min-width: 320px;
+    margin: 0 auto;
+    background: #fff;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   STATUS BAR
+   ========================================================= */
+
+.status-bar {
+    width: 100%;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 18px;
+
+    font-size: 18px;
+    color: #666;
+}
+
+.status-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-square {
+    width: 20px;
+    height: 20px;
+    background: #666;
+    display: inline-block;
+}
+
+.status-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   INSTAGRAM HEADER
+   ========================================================= */
+
+.top-header {
+    width: 100%;
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 18px;
+}
+
+.header-plus {
+    font-size: 48px;
+    font-weight: 200;
+    line-height: 1;
+}
+
+.instagram-logo {
+    font-size: 34px;
+    letter-spacing: -2px;
+    font-weight: 500;
+}
+
+.heart {
+    position: relative;
+    font-size: 45px;
+    line-height: 1;
+}
+
+.notification {
+    position: absolute;
+
+    width: 14px;
+    height: 14px;
+
+    background: #ff1744;
+    border-radius: 50%;
+
+    right: -1px;
+    top: 0;
+
+    border: 2px solid #fff;
+}
+
+
+/* =========================================================
+   STORIES
+   ========================================================= */
+
+.stories {
+    width: 100%;
+    height: 135px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 0 18px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    /* Prevent scrollbar from affecting layout */
+    scrollbar-width: none;
+
+    /* Important */
+    white-space: nowrap;
+}
+
+.stories::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* =========================================================
+   INDIVIDUAL STORY
+   ========================================================= */
+
+.story {
+    position: relative;
+
+    width: 120px;
+    height: 120px;
+
+    min-width: 120px;
+    max-width: 120px;
+
+    min-height: 120px;
+    max-height: 120px;
+
+    flex: 0 0 120px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: visible;
+}
+
+
+/* =========================================================
+   STORY IMAGE
+   ========================================================= */
+
+.story-image {
+    display: block;
+
+    width: 120px;
+    height: 120px;
+
+    min-width: 120px;
+    max-width: 120px;
+
+    min-height: 120px;
+    max-height: 120px;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   STORY RING
+   ========================================================= */
+
+.story-ring {
+    padding: 8px;
+
+    background:
+        conic-gradient(
+            #feda75,
+            #fa7e1e,
+            #d62976,
+            #962fbf,
+            #4f5bd5,
+            #feda75
+        );
+}
+
+
+/* Image inside ring */
+
+.story-ring img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    background: #f0f0f3;
+}
+
+
+/* =========================================================
+   ADD BUTTON
+   ========================================================= */
+
+.story-add {
+    position: absolute;
+
+    right: -2px;
+    bottom: 0;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #111;
+    color: white;
+
+    border: 4px solid #fff;
+
+    font-size: 28px;
+    line-height: 30px;
+
+    text-align: center;
+
+    font-weight: 300;
+
+    z-index: 5;
+}
+
+
+/* =========================================================
+   ACCOUNT ROW
+   ========================================================= */
+
+.account-row {
+    width: 100%;
+    height: 75px;
+
+    border-top: 1px solid #eee;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 16px;
+
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   SMALL AVATAR
+   ========================================================= */
+
+.small-avatar {
+    width: 62px;
+    height: 62px;
+
+    flex: 0 0 62px;
+
+    border-radius: 50%;
+
+    padding: 4px;
+
+    background:
+        conic-gradient(
+            #feda75,
+            #fa7e1e,
+            #d62976,
+            #962fbf,
+            #4f5bd5,
+            #feda75
+        );
+}
+
+.small-avatar img,
+.small-avatar-placeholder {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    background: #f0f0f3;
+
+    border: 3px solid #fff;
+}
+
+
+/* =========================================================
+   ACCOUNT TEXT
+   ========================================================= */
+
+.account-text {
+    flex: 1;
+
+    min-width: 0;
+
+    padding-left: 14px;
+
+    font-size: 19px;
+
+    font-weight: 600;
+
+    overflow: hidden;
+}
+
+.account-text > div:first-child {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.account-subtext {
+    font-size: 14px;
+
+    font-weight: 400;
+
+    margin-top: 4px;
+
+    color: #666;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   MENU
+   ========================================================= */
+
+.menu-icon {
+    width: 30px;
+
+    flex: 0 0 30px;
+
+    font-size: 36px;
+
+    line-height: 1;
+
+    transform: rotate(90deg);
+
+    margin-left: 8px;
+}
+
+
+/* =========================================================
+   POST AREA
+   ========================================================= */
+
+.post-area {
+    width: 100%;
+
+    padding: 0 12px 14px;
+}
+
+
+/* =========================================================
+   POST FRAME
+   ========================================================= */
+
+.post-frame {
+    width: 100%;
+
+    aspect-ratio: 1 / 1;
+
+    border: 3px solid #111;
+
+    border-radius: 7px;
+
+    background: #fff;
+
+    overflow: hidden;
+}
+
+.post-frame iframe {
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+
+    display: block;
+
+    background: #fff;
+}
+
+
+/* Empty frame */
+
+.post-frame.empty iframe {
+    display: none;
+}
+
+
+/* =========================================================
+   POST CONTROLS
+   ========================================================= */
+
+.post-controls {
+    width: 100%;
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0 20px;
+
+    border-top: 1px solid #eee;
+
+    border-bottom: 1px solid #eee;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.pagination {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #d7d9de;
+}
+
+.dot.active {
+    background: #5876ff;
+}
+
+
+/* =========================================================
+   BOTTOM NAVIGATION
+   ========================================================= */
+
+.bottom-nav {
+    width: 100%;
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-around;
+
+    padding: 0 20px;
+}
+
+.nav-icon {
+    font-size: 31px;
+
+    line-height: 1;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+.nav-icon.home {
+    font-size: 34px;
+}
+
+
+/* Notification dots */
+
+.nav-dot {
+    position: absolute;
+
+    right: -5px;
+    bottom: 0;
+
+    width: 12px;
+    height: 12px;
+
+    background: #ff1744;
+
+    border-radius: 50%;
+
+    border: 2px solid #fff;
+}
+
+
+/* =========================================================
+   PROFILE IMAGE IN BOTTOM NAV
+   ========================================================= */
+
+.nav-icon img {
+    width: 30px;
+    height: 30px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   BOTTOM LINE
+   ========================================================= */
+
+.bottom-line {
+    width: 120px;
+    height: 4px;
+
+    background: #8c8c8c;
+
+    border-radius: 8px;
+
+    margin: 0 auto 8px;
+}
+
+
+/* =========================================================
+   PREVENT EDITABLE TEXT FROM BREAKING LAYOUT
+   ========================================================= */
+
+[contenteditable="true"] {
+    outline: none;
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .stories {
+        gap: 14px;
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .account-text {
+        font-size: 17px;
+    }
+
+    .account-subtext {
+        font-size: 13px;
+    }
+
+    .header-plus {
+        font-size: 44px;
+    }
+
+    .instagram-logo {
+        font-size: 31px;
+    }
+
+    .heart {
+        font-size: 41px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="instagram-template">
+
+
+    <!-- =====================================================
+         STATUS BAR
+         ===================================================== -->
+
+    <div class="status-bar">
+
+        <div class="status-left">
+            <span>1:03</span>
+            <span class="status-square"></span>
+        </div>
+
+        <div class="status-right">
+            <span>LTE</span>
+            <span>◉</span>
+            <span>5G</span>
+            <span>◢</span>
+            <span>▮</span>
+            <span>46%</span>
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="top-header">
+
+        <div class="header-plus">＋</div>
+
+        <div class="instagram-logo">
+            Instagram
+        </div>
+
+        <div class="heart">
+            ♡
+            <span class="notification"></span>
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         STORIES
+         ===================================================== -->
+
+    <section class="stories">
+
+
+        <!-- STORY 1 -->
+
+        <div class="story">
+
+            <img
+                src="https://teacherchriser.github.io/images/me.gif"
+                alt="Story 1"
+                class="story-image"
+            >
+
+            <div class="story-add">
+                +
+            </div>
+
+        </div>
+
+
+        <!-- STORY 2 -->
+
+        <div class="story story-ring">
+
+            <img
+                src="https://www.upn.edu.co/wp-content/uploads/2025/11/UPN-2025-MARCA.webp"
+                alt="UPN Story"
+            >
+
+        </div>
+
+
+        <!-- STORY 3 -->
+
+        <div class="story story-ring">
+
+            <img
+                src="https://static.vecteezy.com/system/resources/thumbnails/067/590/116/small/portrait-of-william-shakespeare-in-classic-engraving-style-png.png"
+                alt="William Shakespeare"
+            >
+
+        </div>
+
+
+        <!-- STORY 4 -->
+
+        <div class="story story-ring">
+
+            <img
+                src="https://teacherchriser.github.io/images/me.gif"
+                alt="Story 4"
+            >
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         ACCOUNT
+         ===================================================== -->
+
+    <section class="account-row">
+
+
+        <div class="small-avatar">
+
+            <img
+                src="https://teacherchriser.github.io/images/me.gif"
+                alt="Profile image"
+            >
+
+        </div>
+
+
+        <div class="account-text">
+
+            <div contenteditable="true">
+                Professor Christian Serrano
+            </div>
+
+            <div
+                class="account-subtext"
+                contenteditable="true"
+            >
+                Communication and Interculturality - UPN
+            </div>
+
+        </div>
+
+
+        <div class="menu-icon">
+            ⋮
+        </div>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN POST
+         ===================================================== -->
+
+    <main class="post-area">
+
+        <div class="post-frame">
+
+            <!-- 
+			<iframe
+                src="about:blank"
+                title="Editable classroom content">
+            </iframe>
+			-->
+			
+			<blockquote class="reddit-embed-bq" data-embed-showmedia="false" style="height:316px" data-embed-created="2026-09-30T16:08:22Z">
+<a href="https://www.reddit.com/r/mentalhealth/comments/1re21sj/social_media_is_killing_me/">Social media is killing me</a><br> by
+<a href="https://www.reddit.com/user/Common_Self9684/">u/Common_Self9684</a> in
+<a href="https://www.reddit.com/r/mentalhealth/">mentalhealth</a>
+</blockquote>
+<script async src="https://embed.reddit.com/widgets.js" charset="UTF-8"></script>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         PAGINATION
+         ===================================================== -->
+
+    <section class="post-controls">
+
+        <div class="pagination">
+
+            <span class="dot"></span>
+
+            <span class="dot active"></span>
+
+            <span class="dot"></span>
+
+            <span class="dot"></span>
+
+            <span class="dot"></span>
+
+            <span class="dot"></span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         BOTTOM NAV
+         ===================================================== -->
+
+    <nav class="bottom-nav">
+
+
+        <span class="nav-icon home">
+            ⌂
+        </span>
+
+
+        <span class="nav-icon">
+            ▣
+        </span>
+
+
+        <span class="nav-icon">
+
+            ✈
+
+            <span class="nav-dot"></span>
+
+        </span>
+
+
+        <span class="nav-icon">
+            ⌕
+        </span>
+
+
+        <span class="nav-icon">
+
+            <img
+                src="https://teacherchriser.github.io/images/me.gif"
+                alt="Profile"
+            >
+
+            <span class="nav-dot"></span>
+
+        </span>
+
+
+    </nav>
+
+
+    <!-- =====================================================
+         HOME INDICATOR
+         ===================================================== -->
+
+    <div class="bottom-line"></div>
+
+
+</div>
+
+</body>
+</html>
