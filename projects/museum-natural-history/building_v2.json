@@ -1,0 +1,396 @@
+{
+  "root": {
+    "parent": "none",
+    "resource": "root.glb",
+    "template": "T_root_B.glb",
+    "Wet Specimens": {
+      "resource": "Wet Specimens.glb",
+      "resource_type": "door"
+    },
+    "Insect Collections": {
+      "resource": "Insect Collections.glb",
+      "resource_type": "door"
+    },
+    "Butterfly Garden": {
+      "resource": "Butterfly Garden.glb",
+      "resource_type": "door"
+    }
+  },
+  "Wet Specimens": {
+    "parent": "root",
+    "resource": "Wet Specimens.glb",
+    "template": "T_small_B.glb",
+    "IMG_20261005_145005976_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145005976_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[14.922,10.293,2.000]",
+      "vector": "[-1.0,0.0]",
+      "metadata": "ID #0 IMG_20261005_145005976_HDR"
+    },
+    "IMG_20261005_145017777_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145017777_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-14.929,-10.332,2.000]",
+      "vector": "[1.0,0.0]",
+      "metadata": "ID #1 IMG_20261005_145017777_HDR"
+    },
+    "IMG_20261005_145029151_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145029151_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[4.298,14.922,2.000]",
+      "vector": "[0.0,-1.0]",
+      "metadata": "ID #2 IMG_20261005_145029151_HDR"
+    },
+    "IMG_20261005_145037477_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145037477_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-10.560,14.912,2.000]",
+      "vector": "[0.0,-1.0]",
+      "metadata": "ID #3 IMG_20261005_145037477_HDR"
+    },
+    "IMG_20261005_145058228_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145058228_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[10.712,-14.926,2.000]",
+      "vector": "[0.0,1.0]",
+      "metadata": "ID #4 IMG_20261005_145058228_HDR"
+    },
+    "IMG_20261005_145104877_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145104877_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-5.388,-14.926,2.000]",
+      "vector": "[0.0,1.0]",
+      "metadata": "ID #5 IMG_20261005_145104877_HDR"
+    },
+    "IMG_20261005_145132449_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145132449_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[14.922,5.139,2.000]",
+      "vector": "[-1.0,0.0]",
+      "metadata": "ID #6 IMG_20261005_145132449_HDR"
+    },
+    "IMG_20261005_145138516_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145138516_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-14.929,-5.178,2.000]",
+      "vector": "[1.0,0.0]",
+      "metadata": "ID #7 IMG_20261005_145138516_HDR"
+    },
+    "IMG_20261005_145146067_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145146067_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[14.922,-0.016,2.000]",
+      "vector": "[-1.0,0.0]",
+      "metadata": "ID #8 IMG_20261005_145146067_HDR"
+    },
+    "IMG_20261005_145201701_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145201701_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-14.929,-0.023,2.000]",
+      "vector": "[1.0,0.0]",
+      "metadata": "ID #9 IMG_20261005_145201701_HDR"
+    },
+    "IMG_20261005_145211871_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145211871_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[8.021,14.922,2.000]",
+      "vector": "[0.0,-1.0]",
+      "metadata": "ID #10 IMG_20261005_145211871_HDR"
+    },
+    "IMG_20261005_145228688_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145228688_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-5.596,14.912,2.000]",
+      "vector": "[0.0,-1.0]",
+      "metadata": "ID #11 IMG_20261005_145228688_HDR"
+    },
+    "IMG_20261005_145255851_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145255851_HDR.jpg",
+      "resource_type": "image",
+      "width": "120.00",
+      "height": "90.00",
+      "location": "[5.643,-14.926,2.000]",
+      "vector": "[0.0,1.0]",
+      "metadata": "ID #12 IMG_20261005_145255851_HDR"
+    },
+    "IMG_20261005_145258261_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145258261_HDR.jpg",
+      "resource_type": "image",
+      "width": "120.00",
+      "height": "90.00",
+      "location": "[-10.456,-14.926,2.000]",
+      "vector": "[0.0,1.0]",
+      "metadata": "ID #13 IMG_20261005_145258261_HDR"
+    },
+    "IMG_20261005_145312670_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145312670_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[14.922,-5.170,2.000]",
+      "vector": "[-1.0,0.0]",
+      "metadata": "ID #14 IMG_20261005_145312670_HDR"
+    },
+    "IMG_20261005_145320274_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145320274_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-14.929,5.131,2.000]",
+      "vector": "[1.0,0.0]",
+      "metadata": "ID #15 IMG_20261005_145320274_HDR"
+    },
+    "IMG_20261005_145324619_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145324619_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[14.922,-10.324,2.000]",
+      "vector": "[-1.0,0.0]",
+      "metadata": "ID #16 IMG_20261005_145324619_HDR"
+    },
+    "IMG_20261005_145328686_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145328686_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-14.929,10.285,2.000]",
+      "vector": "[1.0,0.0]",
+      "metadata": "ID #17 IMG_20261005_145328686_HDR"
+    },
+    "IMG_20261005_145338933_HDR": {
+      "resource": "/Wet Specimens/IMG_20261005_145338933_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[11.744,14.922,2.000]",
+      "vector": "[0.0,-1.0]",
+      "metadata": "ID #18 IMG_20261005_145338933_HDR"
+    },
+    "root": {
+      "resource": "root.glb",
+      "resource_type": "door"
+    }
+  },
+  "Insect Collections": {
+    "parent": "root",
+    "resource": "Insect Collections.glb",
+    "template": "T_small_B.glb",
+    "IMG_20261005_145538093_HDR": {
+      "resource": "/Insect Collections/IMG_20261005_145538093_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[14.922,7.716,2.000]",
+      "vector": "[-1.0,0.0]",
+      "metadata": "ID #19 IMG_20261005_145538093_HDR"
+    },
+    "IMG_20261005_145544440_HDR": {
+      "resource": "/Insect Collections/IMG_20261005_145544440_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-14.929,-7.755,2.000]",
+      "vector": "[1.0,0.0]",
+      "metadata": "ID #20 IMG_20261005_145544440_HDR"
+    },
+    "IMG_20261005_145604789_HDR": {
+      "resource": "/Insect Collections/IMG_20261005_145604789_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[5.539,14.922,2.000]",
+      "vector": "[0.0,-1.0]",
+      "metadata": "ID #21 IMG_20261005_145604789_HDR"
+    },
+    "IMG_20261005_145612233_HDR": {
+      "resource": "/Insect Collections/IMG_20261005_145612233_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-10.560,14.912,2.000]",
+      "vector": "[0.0,-1.0]",
+      "metadata": "ID #22 IMG_20261005_145612233_HDR"
+    },
+    "IMG_20261005_145622142_HDR": {
+      "resource": "/Insect Collections/IMG_20261005_145622142_HDR.jpg",
+      "resource_type": "image",
+      "width": "120.00",
+      "height": "90.00",
+      "location": "[8.021,-14.926,2.000]",
+      "vector": "[0.0,1.0]",
+      "metadata": "ID #23 IMG_20261005_145622142_HDR"
+    },
+    "IMG_20261005_145701764_HDR": {
+      "resource": "/Insect Collections/IMG_20261005_145701764_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-8.078,-14.926,2.000]",
+      "vector": "[0.0,1.0]",
+      "metadata": "ID #24 IMG_20261005_145701764_HDR"
+    },
+    "IMG_20261005_145707181_HDR": {
+      "resource": "/Insect Collections/IMG_20261005_145707181_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[14.922,-0.016,2.000]",
+      "vector": "[-1.0,0.0]",
+      "metadata": "ID #25 IMG_20261005_145707181_HDR"
+    },
+    "IMG_20261005_145740210_HDR": {
+      "resource": "/Insect Collections/IMG_20261005_145740210_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-14.929,-0.023,2.000]",
+      "vector": "[1.0,0.0]",
+      "metadata": "ID #26 IMG_20261005_145740210_HDR"
+    },
+    "IMG_20261005_145911113_HDR": {
+      "resource": "/Insect Collections/IMG_20261005_145911113_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[14.922,-7.747,2.000]",
+      "vector": "[-1.0,0.0]",
+      "metadata": "ID #27 IMG_20261005_145911113_HDR"
+    },
+    "IMG_20261005_145915366_HDR": {
+      "resource": "/Insect Collections/IMG_20261005_145915366_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-14.929,7.708,2.000]",
+      "vector": "[1.0,0.0]",
+      "metadata": "ID #28 IMG_20261005_145915366_HDR"
+    },
+    "IMG_20261005_145920938_HDR": {
+      "resource": "/Insect Collections/IMG_20261005_145920938_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[10.503,14.922,2.000]",
+      "vector": "[0.0,-1.0]",
+      "metadata": "ID #29 IMG_20261005_145920938_HDR"
+    },
+    "IMG_20261005_150032798_HDR": {
+      "resource": "/Insect Collections/IMG_20261005_150032798_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-5.596,14.912,2.000]",
+      "vector": "[0.0,-1.0]",
+      "metadata": "ID #30 IMG_20261005_150032798_HDR"
+    },
+    "root": {
+      "resource": "root.glb",
+      "resource_type": "door"
+    }
+  },
+  "Butterfly Garden": {
+    "parent": "root",
+    "resource": "Butterfly Garden.glb",
+    "template": "T_small_B.glb",
+    "IMG_20261005_145643554_HDR": {
+      "resource": "/Butterfly Garden/IMG_20261005_145643554_HDR.jpg",
+      "resource_type": "image",
+      "width": "120.00",
+      "height": "90.00",
+      "location": "[14.922,5.034,2.000]",
+      "vector": "[-1.0,0.0]",
+      "metadata": "ID #31 IMG_20261005_145643554_HDR"
+    },
+    "IMG_20261005_145650045_HDR": {
+      "resource": "/Butterfly Garden/IMG_20261005_145650045_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-14.929,-0.023,2.000]",
+      "vector": "[1.0,0.0]",
+      "metadata": "ID #32 IMG_20261005_145650045_HDR"
+    },
+    "IMG_20261005_145753773_HDR": {
+      "resource": "/Butterfly Garden/IMG_20261005_145753773_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[8.021,14.922,2.000]",
+      "vector": "[0.0,-1.0]",
+      "metadata": "ID #33 IMG_20261005_145753773_HDR"
+    },
+    "IMG_20261005_145823584_HDR": {
+      "resource": "/Butterfly Garden/IMG_20261005_145823584_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-8.078,14.912,2.000]",
+      "vector": "[0.0,-1.0]",
+      "metadata": "ID #34 IMG_20261005_145823584_HDR"
+    },
+    "IMG_20261005_145839971": {
+      "resource": "/Butterfly Garden/IMG_20261005_145839971.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[8.021,-14.926,2.000]",
+      "vector": "[0.0,1.0]",
+      "metadata": "ID #35 IMG_20261005_145839971"
+    },
+    "IMG_20261005_150011139_HDR": {
+      "resource": "/Butterfly Garden/IMG_20261005_150011139_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[-8.078,-14.926,2.000]",
+      "vector": "[0.0,1.0]",
+      "metadata": "ID #36 IMG_20261005_150011139_HDR"
+    },
+    "IMG_20261005_150017351_HDR": {
+      "resource": "/Butterfly Garden/IMG_20261005_150017351_HDR.jpg",
+      "resource_type": "image",
+      "width": "90.00",
+      "height": "120.00",
+      "location": "[14.922,-5.378,2.000]",
+      "vector": "[-1.0,0.0]",
+      "metadata": "ID #37 IMG_20261005_150017351_HDR"
+    },
+    "root": {
+      "resource": "root.glb",
+      "resource_type": "door"
+    }
+  },
+  "Technical": {
+    "ambientLight": 0.5,
+    "pointLight": 50,
+    "style": "classic",
+    "show_plaques": true,
+    "show_frames": true,
+    "skip_hub": false
+  }
+}
