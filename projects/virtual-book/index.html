@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a43b6">
+  <title>Un Libro Virtual</title>
+	<link rel="icon" href="https://teacherchriser.github.io/images/me.gif" type="image/x-icon">
+ <style>
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+</style>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: "Special Elite", system-ui;
+		font-weight: 400;
+		font-style: normal;
+      text-align: center;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    img { max-width: 100%; height: auto; }
+    a { margin-top: 16px; }
+    p { margin-top: 5px; color: #666; }
+  </style>
+</head>
+<body>
+<p style="font-size: 25px; color: #0a43b6; font-weight: bold;">La Biblioteca Invisible</p>
+<p style="font-size: 13px; color: #626568; max-width: 300px;">Qué bacano que te hayas animado a leer un libro en versión digital.</br>Cada 15 dias podrás volver a este lugar para encontrar un libro nuevo.</br>Espero que disfrutes la lectura de este maravilloso libro y sigas aprendiendo a través de la lectura.</p>
+
+  <!-- ✅ IMAGEN: reemplaza el valor de src con la URL de tu imagen -->
+  <img src="https://teacherchriser.github.io/images/Virtual-Book-01.png" alt="Imagen" width="150">
+
+  <!-- ✅ TEXTO CON HIPERVÍNCULO (se abre en una pestaña nueva) -->
+  <a href="https://teams.microsoft.com/l/message/19:tKA53_pCE7m-gFEwimwB60LaU8-U3wwjr6qeKMUiY8Q1@thread.tacv2/1791946722080?tenantId=8244649c-d323-4efe-9383-53386bf08ce8&groupId=f2cfb15d-6bef-4a3c-a485-6db2a1dc2c69&parentMessageId=1791946722080&teamName=Teacher%20Christian%20-%20UPN%20Forums&channelName=Teacher%20Christian%20-%20UPN%20Forums&createdTime=1791946722080" target="_blank" rel="noopener noreferrer" style="font-size: 15px; color: #0a43b6;">Ayuda a mantener viva esta iniciativa dando click aquí y dejando tu comentario, tus ideas o sugerencias para el siguiente libro.</a>
+</br>
+<p style="font-size: 10px; color: #626568;">Una iniciativa creada por: Professor Christian Serrano</p>
+</br>
+  <p style="font-size: 20px; color: #bf2024;">Serás redireccionado al libro digital en <span id="contador"></span> segundos...</p>
+
+  <script>
+    // ⚙️ CONFIGURACIÓN: cambia aquí los segundos y la URL de destino
+    var SEGUNDOS = 30;
+    var URL_DESTINO = "https://teacherchriser.github.io/temporary-A1L1R9G/books/The-Black-Cat.html";
+
+    // No necesitas modificar nada de aquí hacia abajo
+    var restante = SEGUNDOS;
+    var contador = document.getElementById("contador");
+    contador.textContent = restante;
+
+    var intervalo = setInterval(function () {
+      restante--;
+      contador.textContent = restante;
+      if (restante <= 0) {
+        clearInterval(intervalo);
+        window.location.href = URL_DESTINO;
+      }
+    }, 1000);
+  </script>
+  
+  <!-- SITE COUNTER -->
+	<script data-goatcounter="https://teacherchriser.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+		
+<script> 
+document.oncontextmenu = function() { 
+    return false; 
+};
+</script>
+
+</body>
+</html>
