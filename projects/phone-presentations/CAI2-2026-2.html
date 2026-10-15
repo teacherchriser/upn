@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#2b3245">
-<link rel="icon" href="https://teacherchriser.github.io/images/me.gif" type="image/x-icon">
-<title>Phone Presentations</title>
+<title>Phone Simulator · Presentations</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{height:100%;overflow:hidden;background:radial-gradient(circle at 50% 30%,#2b3245,#0d1018);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
@@ -36,6 +34,7 @@
   .widget{margin:6px 4px 14px;color:#fff;text-align:center}
   .widget .t{font-size:54px;font-weight:200;letter-spacing:-1px;line-height:1}
   .widget .d{font-size:13px;opacity:.85;margin-top:4px;text-transform:capitalize}
+  .widget .sub{font-size:14px;font-weight:600;margin-top:8px;padding:0 6px;text-shadow:0 1px 4px rgba(0,0,0,.45)}
   .grid{overflow-y:auto;scrollbar-width:none;display:grid;grid-template-columns:repeat(4,1fr);gap:16px 6px;margin-top:6px}
   .app{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;color:#fff;cursor:pointer;font:inherit}
   .icon{width:58px;height:58px;border-radius:15px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.25);transition:transform .15s}
@@ -78,7 +77,7 @@
         <!-- Inicio -->
         <div class="home" id="home">
           <div class="status"><span id="clk">9:41</span><span class="r"><span>5G</span><span class="bat"></span></span></div>
-          <div class="widget"><div class="t" id="t">09:41</div><div class="d" id="d"></div></div>
+          <div class="widget"><div class="t" id="t">09:41</div><div class="d" id="d"></div><div class="sub" id="sub"></div></div>
           <div class="grid" id="grid"></div>
         </div>
 
@@ -112,6 +111,9 @@ addEventListener("error",e=>{const d=document.createElement("div");d.style.cssTe
      icon : URL de la imagen (.webp, .png, .jpg...). Si queda vacío usa la bandera SVG o iniciales
      url  : URL de la presentación (iframe). Si queda vacío muestra una página de ejemplo
    ===================================================================== */
+/* Texto que aparece debajo de la fecha (déjalo vacío "" para ocultarlo) */
+const HOME_TEXT = "CAI2 - Social Media Presentations";
+
 const APPS = [
   {name:"Colombia", icon:"https://flagicons.lipis.dev/flags/4x3/co.svg", url:"https://view.genially.com/6aa0c3201f22248161098ed4"},
   {name:"Canada", icon:"https://flagicons.lipis.dev/flags/4x3/ca.svg", url:"https://view.genially.com/6acc298566e8e3491cb81e50"},
@@ -173,6 +175,7 @@ const demoHTML=(n,ic)=>`<!DOCTYPE html><meta charset=utf-8><body style="margin:0
 
 /* ---------- Lógica ---------- */
 const $=id=>document.getElementById(id);
+$("sub").textContent=HOME_TEXT;
 const phone=$("phone"),frame=$("frame"),loader=$("loader"),scaler=$("scaler");
 let isLand=false;
 
@@ -214,12 +217,5 @@ function tick(){
 }
 tick();setInterval(tick,15000);
 </script>
-
-<script> 
-document.oncontextmenu = function() { 
-    return false; 
-};
-</script>
-
 </body>
 </html>
