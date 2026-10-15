@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="https://teacherchriser.github.io/images/me.gif" type="image/x-icon">
+<title>Phone Presentations</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;overflow:hidden;background:radial-gradient(circle at 50% 30%,#2b3245,#0d1018);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  #stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  #scaler{transition:transform .6s cubic-bezier(.4,0,.2,1);transform-origin:center}
+
+  /* ---------- Cuerpo del teléfono ---------- */
+  .phone{position:relative;width:370px;height:760px;border-radius:54px;padding:14px;
+    background:linear-gradient(145deg,#3a3f4b,#14161c);
+    box-shadow:0 0 0 2px #555b69,0 0 0 5px #0a0b0f,0 40px 80px rgba(0,0,0,.6),inset 0 0 8px rgba(255,255,255,.15);
+    transition:width .6s cubic-bezier(.4,0,.2,1),height .6s cubic-bezier(.4,0,.2,1)}
+  .phone.land{width:760px;height:370px}
+  .screen{position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:#000}
+  .cam{position:absolute;z-index:50;width:14px;height:14px;border-radius:50%;background:#050608;
+    box-shadow:inset 0 0 0 3px #12141a,0 0 0 2px #000;top:12px;left:calc(50% - 7px);transition:all .6s}
+  .land .cam{top:calc(50% - 7px);left:12px}
+
+  /* ---------- Pantalla de inicio ---------- */
+  .home{position:absolute;inset:0;padding:46px 18px 34px;display:flex;flex-direction:column;
+    background:linear-gradient(160deg,#1e3c72 0%,#2a5298 40%,#7b4397 100%);transition:opacity .35s,transform .35s}
+  .home::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 10%,rgba(255,255,255,.22),transparent 45%),radial-gradient(circle at 90% 90%,rgba(255,140,200,.25),transparent 50%)}
+  .home>*{position:relative}
+  .status{position:absolute;top:14px;left:26px;right:26px;display:flex;justify-content:space-between;color:#fff;font-size:13px;font-weight:600;z-index:5}
+  .status .r{display:flex;gap:6px;align-items:center}
+  .bat{width:22px;height:11px;border:1.5px solid #fff;border-radius:3px;position:relative}
+  .bat::before{content:"";position:absolute;inset:1.5px;right:5px;background:#fff;border-radius:1px}
+  .bat::after{content:"";position:absolute;right:-4px;top:2.5px;width:2px;height:4px;background:#fff;border-radius:0 1px 1px 0}
+  .widget{margin:6px 4px 14px;color:#fff;text-align:center}
+  .widget .t{font-size:54px;font-weight:200;letter-spacing:-1px;line-height:1}
+  .widget .d{font-size:13px;opacity:.85;margin-top:4px;text-transform:capitalize}
+  .grid{overflow-y:auto;scrollbar-width:none;display:grid;grid-template-columns:repeat(4,1fr);gap:16px 6px;margin-top:6px}
+  .app{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;color:#fff;cursor:pointer;font:inherit}
+  .icon{width:58px;height:58px;border-radius:15px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.25);transition:transform .15s}
+  .icon svg,.icon img,.bar .flag img{width:100%;height:100%;display:block;object-fit:cover}
+  .app:hover .icon{transform:scale(1.06)}
+  .app:active .icon{transform:scale(.88)}
+  .app span{font-size:11px;text-shadow:0 1px 3px rgba(0,0,0,.6);max-width:76px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .land .home,.opening .home{opacity:0;transform:scale(1.08);pointer-events:none}
+
+  /* ---------- Visor de la app (iframe) ---------- */
+  .viewer{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .35s .25s;display:flex;flex-direction:column}
+  .land .viewer{opacity:1;pointer-events:auto}
+  .bar{height:30px;flex:none;display:flex;align-items:center;gap:8px;padding:0 14px 0 34px;background:#111;color:#fff;font-size:12px}
+  .bar button{background:#2c2f38;color:#fff;border:0;border-radius:10px;padding:3px 10px;font-size:12px;cursor:pointer}
+  .bar button:hover{background:#3d4150}
+  .bar .flag{width:20px;height:14px;border-radius:2px;overflow:hidden;display:block}
+  .bar .flag svg{width:100%;height:100%;display:block}
+  .bar .name{font-weight:600;flex:1}
+  .frame-wrap{position:relative;flex:1;background:#fff}
+  iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}
+  .loader{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#10131a;transition:opacity .3s}
+  .loader.hide{opacity:0;pointer-events:none}
+  .loader i{width:34px;height:34px;border:3px solid #333a4d;border-top-color:#fff;border-radius:50%;animation:sp .8s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+
+  /* ---------- Barra de gestos ---------- */
+  .homebar{position:absolute;z-index:60;left:50%;bottom:5px;width:120px;height:18px;margin-left:-60px;background:none;border:0;cursor:pointer}
+  .homebar::after{content:"";position:absolute;left:0;right:0;top:7px;height:4px;border-radius:3px;background:rgba(255,255,255,.85);box-shadow:0 0 3px rgba(0,0,0,.5)}
+
+  .hint{position:fixed;bottom:10px;left:0;right:0;text-align:center;color:#8d94a8;font-size:12px;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="scaler">
+    <div class="phone" id="phone">
+      <div class="screen">
+        <div class="cam"></div>
+
+        <!-- Inicio -->
+        <div class="home" id="home">
+          <div class="status"><span id="clk">9:41</span><span class="r"><span>5G</span><span class="bat"></span></span></div>
+          <div class="widget"><div class="t" id="t">09:41</div><div class="d" id="d"></div></div>
+          <div class="grid" id="grid"></div>
+        </div>
+
+        <!-- Visor -->
+        <div class="viewer" id="viewer">
+          <div class="bar">
+            <button id="back">‹ Home</button>
+            <span class="flag" id="barFlag"></span>
+            <span class="name" id="barName"></span>
+          </div>
+          <div class="frame-wrap">
+            <iframe id="frame" title="Presentation" allow="fullscreen; autoplay; clipboard-write" allowfullscreen></iframe>
+            <div class="loader" id="loader"><i></i></div>
+          </div>
+        </div>
+
+        <button class="homebar" id="homebar" aria-label="Go home"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="hint">Tap an icon to open its presentation · Esc or the bottom bar to go back</div>
+
+<script>
+addEventListener("error",e=>{const d=document.createElement("div");d.style.cssText="position:fixed;top:0;left:0;right:0;background:#b00020;color:#fff;padding:8px 12px;font:13px system-ui;z-index:999";d.textContent="Error en el script: "+e.message+" (línea "+e.lineno+") — revisa comas y comillas en APPS";document.body.appendChild(d)});
+</script>
+<script>
+/* =====================================================================
+   CONFIGURACIÓN: por cada app define
+     name : nombre que aparece bajo el icono
+     icon : URL de la imagen (.webp, .png, .jpg...). Si queda vacío usa la bandera SVG o iniciales
+     url  : URL de la presentación (iframe). Si queda vacío muestra una página de ejemplo
+   ===================================================================== */
+const APPS = [
+  {name:"Colombia", icon:"https://flagicons.lipis.dev/flags/4x3/co.svg", url:"https://view.genially.com/6aa0c3201f22248161098ed4"},
+  {name:"Canada", icon:"https://flagicons.lipis.dev/flags/4x3/ca.svg", url:"https://view.genially.com/6acc298566e8e3491cb81e50"},
+  {name:"Finland", icon:"https://flagicons.lipis.dev/flags/4x3/fi.svg", url:"https://www.canva.com/design/DAHX6OmgvSM/KRryPxEthofngzJVIovadQ/view?embed"},
+  {name:"Estonia", icon:"https://flagicons.lipis.dev/flags/4x3/ee.svg", url:"https://view.genially.com/6ac3ba93ffd772a4bb29156a"},
+  {name:"Mexico", icon:"https://flagicons.lipis.dev/flags/4x3/mx.svg", url:"https://view.genially.com/6ace7fe80f0e6d38772a572e"},
+  {name:"France", icon:"https://flagicons.lipis.dev/flags/4x3/fr.svg", url:"https://view.genially.com/6acd532be4e66313fedd15b1"},
+  {name:"Japan", icon:"https://flagicons.lipis.dev/flags/4x3/jp.svg", url:"https://view.genially.com/6ac7eb0caf50978e6515cbf3"},
+  {name:"Switzerland", icon:"https://flagicons.lipis.dev/flags/4x3/ch.svg", url:"https://view.genially.com/6acd5bc98773cf473f42addb"},
+  {name:"Singapore", icon:"https://flagicons.lipis.dev/flags/4x3/sg.svg", url:"https://view.genially.com/6abac43a2e70240f9013ef46"},
+  {name:"Sweden", icon:"https://flagicons.lipis.dev/flags/4x3/se.svg", url:"https://view.genially.com/6ace61730f0e6d387709cc6e"},
+  {name:"Netherlands", icon:"https://flagicons.lipis.dev/flags/4x3/nl.svg", url:"https://view.genially.com/6abada767b938f4ae9b90fa9"},
+  {name:"England", icon:"https://flagicons.lipis.dev/flags/4x3/gb.svg", url:"https://view.genially.com/6abadcb68006cc3aa2a30b48"},
+  {name:"Ireland", icon:"https://flagicons.lipis.dev/flags/4x3/ie.svg", url:"https://view.genially.com/6ace4520b712db03799819d8"},
+  {name:"Norway", icon:"https://flagicons.lipis.dev/flags/4x3/no.svg", url:"https://view.genially.com/6acd2f13e4e66313feb54a6a"},
+  {name:"Germany", icon:"https://flagicons.lipis.dev/flags/4x3/de.svg", url:"https://view.genially.com/6abadaafd3fe69d158f04ce5"},
+  {name:"India", icon:"https://flagicons.lipis.dev/flags/4x3/in.svg", url:"https://view.genially.com/6abade9d52b58c6e4a0093da"},
+  {name:"Korea", icon:"https://flagicons.lipis.dev/flags/4x3/kr.svg", url:"https://view.genially.com/6acbecb2e41084ac170c8efc"},
+  {name:"Brazil", icon:"https://flagicons.lipis.dev/flags/4x3/br.svg", url:"https://view.genially.com/6abc78a1e4c292c2e032acd8"}
+];
+
+/* ---------- Banderas SVG ---------- */
+const R=(x,y,w,h,f)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${f}"/>`;
+const H3=(a,b,c)=>R(0,0,30,7,a)+R(0,6.66,30,6.7,b)+R(0,13.33,30,6.7,c);
+const V3=(a,b,c)=>R(0,0,10.1,20,a)+R(10,0,10.1,20,b)+R(20,0,10,20,c);
+const usStripes=()=>{let s="";for(let i=0;i<13;i++)s+=R(0,i*20/13,30,20/13+.05,i%2?"#fff":"#B22234");s+=R(0,0,13,10.8,"#3C3B6E");for(let r=0;r<4;r++)for(let c=0;c<5;c++)s+=`<circle cx="${1.6+c*2.5}" cy="${1.7+r*2.5}" r=".55" fill="#fff"/>`;return s};
+const FLAGS={
+ "Colombia":R(0,0,30,10,"#FCD116")+R(0,10,30,5,"#003893")+R(0,15,30,5,"#CE1126"),
+ "Mexico":V3("#006847","#fff","#CE1126")+`<circle cx="15" cy="10" r="2.6" fill="#8B5A2B"/>`,
+ "Argentina":H3("#74ACDF","#fff","#74ACDF")+`<circle cx="15" cy="10" r="2.2" fill="#F6B40E"/>`,
+ "Spain":R(0,0,30,5,"#AA151B")+R(0,5,30,10,"#F1BF00")+R(0,15,30,5,"#AA151B"),
+ "United States":usStripes(),
+ "Brazil":R(0,0,30,20,"#009C3B")+`<polygon points="15,2 28,10 15,18 2,10" fill="#FFDF00"/><circle cx="15" cy="10" r="4.2" fill="#002776"/>`,
+ "Chile":R(0,0,30,10,"#fff")+R(0,10,30,10,"#D52B1E")+R(0,0,10,10,"#0039A6")+`<circle cx="5" cy="5" r="2" fill="#fff"/>`,
+ "Peru":V3("#D91023","#fff","#D91023"),
+ "France":V3("#0055A4","#fff","#EF4135"),
+ "Germany":H3("#000","#DD0000","#FFCE00"),
+ "Italy":V3("#009246","#fff","#CE2B37"),
+ "United Kingdom":R(0,0,30,20,"#012169")+`<path d="M0 0L30 20M30 0L0 20" stroke="#fff" stroke-width="4"/><path d="M0 0L30 20M30 0L0 20" stroke="#C8102E" stroke-width="1.4"/><path d="M15 0V20M0 10H30" stroke="#fff" stroke-width="6"/><path d="M15 0V20M0 10H30" stroke="#C8102E" stroke-width="3.6"/>`,
+ "Japan":R(0,0,30,20,"#fff")+`<circle cx="15" cy="10" r="6" fill="#BC002D"/>`,
+ "Canada":R(0,0,30,20,"#D52B1E")+R(7.5,0,15,20,"#fff")+`<polygon points="15,4 16.5,8 20,7 18.5,11 20,12 15.8,12.8 15.8,16.5 14.2,16.5 14.2,12.8 10,12 11.5,11 10,7 13.5,8" fill="#D52B1E"/>`,
+ "Portugal":R(0,0,12,20,"#006600")+R(12,0,18,20,"#FF0000")+`<circle cx="12" cy="10" r="3.6" fill="#FFD700"/><circle cx="12" cy="10" r="2" fill="#fff"/>`,
+ "Netherlands":H3("#AE1C28","#fff","#21468B"),
+ "Sweden":R(0,0,30,20,"#006AA7")+R(9,0,3.5,20,"#FECC00")+R(0,8.2,30,3.6,"#FECC00")
+};
+const svg=n=>`<svg viewBox="0 0 30 20" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">${FLAGS[n]}</svg>`;
+
+const initials=n=>`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#445;color:#fff;font:700 20px system-ui">${n.slice(0,2).toUpperCase()}</div>`;
+const iconHTML=a=>a.icon
+  ? `<img src="${a.icon}" alt="${a.name}" draggable="false" onerror="this.outerHTML=initials('${a.name.replace(/'/g,"")}')">`
+  : FLAGS[a.name] ? svg(a.name)
+  : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#445;color:#fff;font:700 20px system-ui">${a.name.slice(0,2).toUpperCase()}</div>`;
+
+/* ---------- Página de ejemplo (cuando no hay url) ---------- */
+const demo=a=>demoHTML(a.name,iconHTML(a));
+const demoHTML=(n,ic)=>`<!DOCTYPE html><meta charset=utf-8><body style="margin:0;height:100vh;display:flex;align-items:center;justify-content:center;gap:28px;font-family:system-ui,sans-serif;background:linear-gradient(135deg,#f5f7fb,#dfe6f3);color:#1c2333">
+<div style="width:200px;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.25)"><style>svg,img{display:block;width:100%}</style>${ic}</div>
+<div><h1 style="margin:0 0 8px;font-size:34px">${n}</h1><p style="margin:0;max-width:300px;line-height:1.4;color:#4a5370">The presentation for this country will load here. Edit the <b>url</b> field in the <code>APPS</code> array.</p></div>`;
+
+/* ---------- Lógica ---------- */
+const $=id=>document.getElementById(id);
+const phone=$("phone"),frame=$("frame"),loader=$("loader"),scaler=$("scaler");
+let isLand=false;
+
+$("grid").innerHTML=APPS.map((a,i)=>`<button class="app" data-i="${i}"><div class="icon">${iconHTML(a)}</div><span>${a.name}</span></button>`).join("");
+$("grid").addEventListener("click",e=>{const b=e.target.closest(".app");if(b)openApp(+b.dataset.i)});
+
+function openApp(i){
+  const a=APPS[i];
+  $("barName").textContent=a.name;
+  $("barFlag").innerHTML=iconHTML(a);
+  loader.classList.remove("hide");
+  frame.onload=()=>loader.classList.add("hide");
+  if(a.url){frame.removeAttribute("srcdoc");frame.src=a.url}
+  else{frame.removeAttribute("src");frame.srcdoc=demo(a)}
+  isLand=true;phone.classList.add("land");fit();
+}
+function goHome(){
+  if(!isLand)return;
+  isLand=false;phone.classList.remove("land");fit();
+  setTimeout(()=>{if(!isLand){frame.removeAttribute("srcdoc");frame.src="about:blank"}},500);
+}
+$("back").onclick=$("homebar").onclick=goHome;
+addEventListener("keydown",e=>{if(e.key==="Escape")goHome()});
+
+/* Ajuste de escala a la ventana */
+function fit(){
+  const w=isLand?760:370,h=isLand?370:760;
+  const s=Math.min((innerWidth-24)/(w+10),(innerHeight-44)/(h+10),1);
+  scaler.style.transform=`scale(${s})`;
+}
+addEventListener("resize",fit);fit();
+
+/* Reloj */
+function tick(){
+  const n=new Date(),p=x=>String(x).padStart(2,"0");
+  const hm=`${p(n.getHours())}:${p(n.getMinutes())}`;
+  $("clk").textContent=hm;$("t").textContent=hm;
+  $("d").textContent=n.toLocaleDateString("en-US",{weekday:"long",day:"numeric",month:"long"});
+}
+tick();setInterval(tick,15000);
+</script>
+
+<script> 
+document.oncontextmenu = function() { 
+    return false; 
+};
+</script>
+
+</body>
+</html>
