@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a43b6">
+  <title>UPN Final Scores Database</title>
+	<link rel="icon" href="https://teacherchriser.github.io/images/me.gif" type="image/x-icon">
+ <style>
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Special+Elite&display=swap');
+</style>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: "Play", sans-serif;
+		font-weight: 400;
+		font-style: normal;
+      text-align: center;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    img { max-width: 100%; height: auto; }
+    a { margin-top: 16px; }
+    p { margin-top: 5px; color: #666; }
+  </style>
+</head>
+<body>
+<p style="font-size: 25px; color: #0a43b6; font-weight: bold;">Consulta Notas Finales - CAI UPN</p>
+<p style="font-size: 13px; color: #626568; max-width: 300px;">Acceso únicamente para docentes UPN autorizados</p>
+
+  <!-- ✅ IMAGEN: reemplaza el valor de src con la URL de tu imagen -->
+  <img src="https://teacherchriser.github.io/images/Virtual-Book-01.png" alt="Imagen" width="250">
+
+  <!-- ✅ TEXTO CON HIPERVÍNCULO (se abre en una pestaña nueva)
+  <a href="#" target="_blank" rel="noopener noreferrer" style="font-size: 15px; color: #0a43b6;">Ayuda a mantener viva esta iniciativa dando click aquí y dejando tu comentario, tus ideas o sugerencias para el siguiente libro.</a>
+  -->
+</br>
+<p style="font-size: 10px; color: #626568;">Creación: Professor Christian Serrano</p>
+
+<img src="https://teacherchriser.github.io/images/me.gif" width="25">
+</br>
+  <p style="font-size: 20px; color: #bf2024;">Serás redireccionado en <span id="contador"></span> segundos...</p>
+
+  <script>
+    // ⚙️ CONFIGURACIÓN: cambia aquí los segundos y la URL de destino
+    var SEGUNDOS = 7;
+    var URL_DESTINO = "https://script.google.com/macros/s/AKfycbwC0lrbeBHuM-eTVIGOy1zNwK4jhmyqb4nULpYGWBBN-3Lo0UzWA_xy1wvhsMDGD2M9/exec";
+
+    // No necesitas modificar nada de aquí hacia abajo
+    var restante = SEGUNDOS;
+    var contador = document.getElementById("contador");
+    contador.textContent = restante;
+
+    var intervalo = setInterval(function () {
+      restante--;
+      contador.textContent = restante;
+      if (restante <= 0) {
+        clearInterval(intervalo);
+        window.location.href = URL_DESTINO;
+      }
+    }, 1000);
+  </script>
+  
+  <!-- SITE COUNTER -->
+	<script data-goatcounter="https://teacherchriser.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+		
+<script> 
+document.oncontextmenu = function() { 
+    return false; 
+};
+</script>
+
+</body>
+</html>
