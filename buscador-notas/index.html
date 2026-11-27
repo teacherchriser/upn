@@ -11,6 +11,22 @@
 </style>
 
   <style>
+  /* Imagen de fondo con 50% de transparencia */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("https://teacherchriser.github.io/upn/buscador-notas/UPN-Watercolor-01.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.2; /* Baja este valor (ej. 0.3) para más transparencia */
+      z-index: -1;
+      pointer-events: none;
+    }
     body {
 	  background-color: #F4F1E8;
       margin: 0;
@@ -33,7 +49,7 @@
 </head>
 <body>
 <p style="font-size: 25px; color: #0a43b6; font-weight: bold; line-height: 0px;">Buscador Histórico de Notas</p>
-<p style="font-size: 17px; color: #A1A1A1; font-weight: bold; line-height: 0px;">Communication & Interculturality - UPN</p>
+<p style="font-size: 17px; color: #001c7d; font-weight: bold; line-height: 0px;">Communication & Interculturality - UPN</p>
 <p style="font-size: 13px; color: #626568; max-width: 400px; line-height: 30px; font-weight: bold;">Acceso únicamente para docentes DLE-UPN autorizados</p>
 
   <!-- ✅ IMAGEN: reemplaza el valor de src con la URL de tu imagen -->
